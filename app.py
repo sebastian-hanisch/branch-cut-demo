@@ -106,7 +106,7 @@ st.caption("🎯 Schnellstart – ein Beispielszenario laden:")
 PRESET_HELP = {
     "Schnitte reichen bereits vollständig (kein Branchen nötig)": "5 Pakete - ein einziger Wurzel-Schnitt macht die LP-Lösung bereits ganzzahlig, Phase 2 hat nur den Wurzelknoten.",
     "Schnitte allein reichten nicht (hier reicht wenig Branchen)": "Dieselbe Instanz wie cutting-planes-demos Härtefall - dort blieb eine Lücke offen, hier schließt sie ein winziger Restbaum.",
-    "Stark korrelierte Instanz (auch hier nicht spurlos)": "branch-bound-demos eigener Härtefall - auch Branch & Cut braucht hier spürbar mehr Knoten als die anderen Presets, nur weniger als reines Branch & Bound.",
+    "Stark korrelierte Instanz (auch hier nicht spurlos)": "branch-bound-demos eigener Härtefall - auch Branch & Cut braucht hier spürbar mehr Knoten als die anderen Presets; gegenüber der reinen LP-Bound aus branch-bound-demo sparen die Schnitte hier allerdings keinen Knoten, erst die schwache Bound braucht deutlich mehr.",
 }
 preset_cols = st.columns(len(C.PRESETS))
 for i, name in enumerate(C.PRESETS.keys()):
@@ -130,8 +130,7 @@ with st.sidebar:
     correlation = st.slider(
         "Korrelation Wert/Gewicht", *bounds("correlation_slider"), key="correlation_slider",
         help="0 = Wert unabhängig vom Gewicht. 1 = wertvolle Pakete sind auch die schweren "
-        "(branch-bound-demos Härtefall) - auch Branch & Cut wird davon nicht verschont, nur "
-        "weniger hart getroffen als reines Branch & Bound.",
+        "(branch-bound-demos Härtefall) - auch Branch & Cut wird davon nicht verschont.",
     )
     seed = st.number_input("Zufalls-Seed", *bounds("seed_input"), key="seed_input", step=1)
 
@@ -336,6 +335,6 @@ st.markdown("---")
 
 st.caption(
     "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
-    "Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung für "
-    "Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)"
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zur Reihe: [Exakte Suche erklärt: Rucksack und Cutting Stock](https://sebastianhanisch.net/konzepte-exakte-suche.html)."
 )
