@@ -29,8 +29,10 @@ Knoten schon vorher abgeschnitten (siehe `bc_bounds.cut_bound`, das dies als
 Invariante prüft, nicht als normalen Codepfad, plus
 [tests/test_solver.py](tests/test_solver.py)s empirischer Beleg über viele
 Instanzen). Der eigentliche Nutzen der Schnitte: eine **schärfere Schranke an jedem
-Knoten**, die den bestehenden Bound-Pruning-Mechanismus aus `branch-bound-demo` viel
-öfter greifen lässt.
+Knoten**, die den bestehenden Bound-Pruning-Mechanismus aus `branch-bound-demo` nie
+seltener und in manchen Instanzen deutlich früher greifen lässt (Stichprobe n = 10 bis 17, je 12 Seeds
+und Korrelation 0 bzw. 0.95: in 4 bis 7 von 12 Instanzen weniger Knoten als mit der reinen LP-Schranke,
+sonst gleich viele, nie mehr).
 
 ## Ein zweiter, während der Implementierung gefundener Fehler
 

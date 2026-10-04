@@ -81,8 +81,9 @@ Branch & Cut läuft in zwei Phasen ab:
 2. **Verzweigen ab der geschärften Wurzel** (wie in branch-bound-demo): Paket für
    Paket, "aufgenommen" vor "ausgelassen". Der einzige Unterschied: die Schranke an
    jedem Knoten löst jetzt eine LP über die noch offenen Pakete, unter Kapazität
-   **und** allen Wurzel-Schnitten - dadurch bricht sie öfter und früher ab als
-   branch-bound-demos einfache LP-Schranke.
+   **und** allen Wurzel-Schnitten - dadurch bricht sie nie später und bei manchen Instanzen früher ab als
+   branch-bound-demos einfache LP-Schranke (Stichprobe n = 10 bis 17, je 12 Seeds: in 4 bis 7 von 12
+   Instanzen weniger Knoten, sonst gleich viele).
 
 **Bewusste Vereinfachung, diese Demo eigene ehrliche Schwäche**: die Schnitte werden
 nur **einmal an der Wurzel** gesucht ("Cut-and-Branch"), nicht an jedem einzelnen
@@ -97,7 +98,7 @@ Verzweigungsreihenfolge aber nie - sobald alle Pakete einer Deckung ausgewählt
 wären, hat der gewöhnliche Kapazitäts-Check (wie in branch-bound-demo) den Knoten
 schon vorher abgeschnitten. Der eigentliche Nutzen der Schnitte liegt woanders: eine
 **schärfere Schranke an jedem einzelnen Knoten**, die den bestehenden
-Bound-Pruning-Mechanismus viel öfter greifen lässt. Siehe
+Bound-Pruning-Mechanismus nie seltener und in manchen Instanzen deutlich früher greifen lässt. Siehe
 "📐 Mathematische Formulierung" für den Beweis.
         """
     )
@@ -224,7 +225,7 @@ lm1.metric("Besuchte Knoten (bisher)", f"{live['nodes_so_far']:,}")
 lm2.metric(
     "Gestutzt (Bound)", f"{live['pruned_bound']:,}",
     help="Dank der Schnitte schärfer als branch-bound-demos einfache LP-Schranke - greift "
-    "dadurch öfter und früher.",
+    "dadurch nie später, in manchen Instanzen früher.",
 )
 lm3.metric("Gestutzt (zu schwer)", f"{live['pruned_infeasible']:,}")
 lm4.metric("Bester Fund bisher", live["current_best"])
@@ -317,7 +318,7 @@ verletzt werden.
 **Der eigentliche Nutzen der Schnitte** liegt also nicht in einem neuen
 Pruning-Grund, sondern darin, dass die LP-Schranke an JEDEM Knoten enger wird -
 der bestehende "Gestutzt (Bound)"-Mechanismus aus branch-bound-demo greift dadurch
-insgesamt viel öfter.
+insgesamt nie seltener, in manchen Instanzen deutlich früher.
 
 **Cut-and-Branch vs. vollständiges Branch & Cut**: diese Demo sucht Schnitte nur
 einmal an der Wurzel. Reale Solver generieren an tieferen Knoten oft neue,
