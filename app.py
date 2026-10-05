@@ -82,7 +82,7 @@ Branch & Cut läuft in zwei Phasen ab:
    Paket, "aufgenommen" vor "ausgelassen". Der einzige Unterschied: die Schranke an
    jedem Knoten löst jetzt eine LP über die noch offenen Pakete, unter Kapazität
    **und** allen Wurzel-Schnitten - dadurch bricht sie nie später und bei manchen Instanzen früher ab als
-   branch-bound-demos einfache LP-Schranke (Stichprobe n = 10 bis 17, je 12 Seeds: in 4 bis 7 von 12
+   branch-bound-demos einfache LP-Schranke (Stichprobe n = 10 bis 17, je 12 Seeds: in 2 bis 7 von 12
    Instanzen weniger Knoten, sonst gleich viele).
 
 **Bewusste Vereinfachung, diese Demo eigene ehrliche Schwäche**: die Schnitte werden
